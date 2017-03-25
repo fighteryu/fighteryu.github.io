@@ -1,22 +1,48 @@
 ﻿<!doctype html>
+<html>
 <head>
 <meta charset="utf-8">
 <title>Blog</title>
+<link rel="stylesheet" href="css/main.min.css">
+
+<!--<script src="js/modernizr-2.6.2.custom.min.js"></script>-->
+<link rel="shortcut icon" href="images/icon.ico">
 </head>
-<h1>FIGHTERYU's BLOG</h1>
-<h3>不写CSS，因为我不会</h3>
 <body id="page">
-  <li> 
-  	<article> 
-  		<a href="blog/django.html">
-  			Django简单描述 
-  			<span class="entry-date">
-  				<time datetime="2017-01-10T00:00:00+08:00">
-  					Jan 10, 2017
-  				</time>
-  			</span>
+<header class="masthead">
+	<div class="wrap">       
+        <h1 class="site-title animated fadeIn"><a>FIGHTERYU's Bad Articles</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">我的小名是水水 :D</h2>
+	</div>
+</header>
+
+<div id="main" role="main">
+  <article class="entry">
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <h1 class="entry-title"></h1>
+      </header>
+    <div class="entry-content">
+        <ul class="post-list"> <!--<ul>无序列表,并调用一个post-list的css样式。-->
+  <li> <!--列表标签 -->
+  	<article> <!--<article> 标签规定独立的自包含内容。 -->
+  		<a href="blog/01.html"> <!--<a href="">创建超链接</a> -->
+  			Django简单描述
   		</a>
   	</article>
   </li>
+  <li> <!--列表标签 -->
+    <article> <!--<article> 标签规定独立的自包含内容。 -->
+      <a href="blog/02.html"> <!--<a href="">创建超链接</a> -->
+        Python中的字符编码简单描述
+      </a>
+    </article>
+  </li>
+</ul>
+</div>
+  </div>
+  </article>
+</div><!-- /#main -->
+
 </body>
 </html>
