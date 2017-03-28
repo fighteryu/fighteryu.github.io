@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>code2code</title>
+<title>requests</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
@@ -468,46 +468,363 @@ vertical-align:1px;
 </style>
 </head>
 <body>
-<h1 id="-center-python-center-"><center>Python字符编码问题简单描述</center></h1>
-<h2 id="1-ascii-">1.ASCII编码</h2>
-<blockquote>
-<p>　　在python中有chr()和ord()方法进行转换。</p>
-</blockquote>
-<pre><code>&gt;&gt;&gt; chr(88)
-&#39;X&#39;
-&gt;&gt;&gt; ord(&#39;X&#39;)
-88
-</code></pre><h2 id="2-python-">2、关于python中的编码</h2>
+<h1 id="-center-requests-center-"><center>requests库简单描述</center></h1>
+<h2 id="-">实例引入</h2>
+<pre><code class="lang-python">&gt;&gt;&gt; import requests
+&gt;&gt;&gt; response=requests.get(&#39;http://www.baidu.com&#39;)
+&gt;&gt;&gt; print(type(response))
+&lt;class &#39;requests.models.Response&#39;&gt;
+&gt;&gt;&gt; print(response.status_code)
+200
+&gt;&gt;&gt; print(type(response.text))
+&lt;class &#39;str&#39;&gt;
+&gt;&gt;&gt; response.text
+&#39;&lt;!DOCTYPE html&gt;\r\n&lt;!--STATUS OK--&gt;&lt;html&gt; &lt;head&gt;&lt;meta http-equiv=content-type content=text/html;charset=utf-8&gt;&lt;meta http-equiv=X-UA-Compatible content=IE=Edge&gt;&lt;meta content=always name=referrer&gt;&lt;link rel=stylesheet type=text/css href=http://s1.bdstatic.com/r/www/cache/bdorz/baidu.min.css&gt;&lt;title&gt;ç\x99¾åº¦ä¸\x80ä¸\x8bï¼\x8cä½\xa0å°±ç\x9f¥é\x81\x93&lt;/title&gt;&lt;/head&gt; &lt;body link=#0000cc&gt; &lt;div id=wrapper&gt; &lt;div id=head&gt; &lt;div class=head_wrapper&gt; &lt;div class=s_form&gt; &lt;div class=s_form_wrapper&gt; &lt;div id=lg&gt; &lt;img hidefocus=true src=//www.baidu.com/img/bd_logo1.png width=270 height=129&gt; &lt;/div&gt; &lt;form id=form name=f action=//www.baidu.com/s class=fm&gt; &lt;input type=hidden name=bdorz_come value=1&gt; &lt;input type=hidden name=ie value=utf-8&gt; &lt;input type=hidden name=f value=8&gt; &lt;input type=hidden name=rsv_bp value=1&gt; &lt;input type=hidden name=rsv_idx value=1&gt; &lt;input type=hidden name=tn value=baidu&gt;&lt;span class=&quot;bg s_ipt_wr&quot;&gt;&lt;input id=kw name=wd class=s_ipt value maxlength=255 autocomplete=off autofocus&gt;&lt;/span&gt;&lt;span class=&quot;bg s_btn_wr&quot;&gt;&lt;input type=submit id=su value=ç\x99¾åº¦ä¸\x80ä¸\x8b class=&quot;bg s_btn&quot;&gt;&lt;/span&gt; &lt;/form&gt; &lt;/div&gt; &lt;/div&gt; &lt;div id=u1&gt; &lt;a href=http://news.baidu.com name=tj_trnews class=mnav&gt;æ\x96°é\x97»&lt;/a&gt; &lt;a href=http://www.hao123.com name=tj_trhao123 class=mnav&gt;hao123&lt;/a&gt; &lt;a href=http://map.baidu.com name=tj_trmap class=mnav&gt;å\x9c°å\x9b¾&lt;/a&gt; &lt;a href=http://v.baidu.com name=tj_trvideo class=mnav&gt;è§\x86é¢\x91&lt;/a&gt; &lt;a href=http://tieba.baidu.com name=tj_trtieba class=mnav&gt;è´´å\x90§&lt;/a&gt; &lt;noscript&gt; &lt;a href=http://www.baidu.com/bdorz/login.gif?login&amp;amp;tpl=mn&amp;amp;u=http%3A%2F%2Fwww.baidu.com%2f%3fbdorz_come%3d1 name=tj_login class=lb&gt;ç\x99»å½\x95&lt;/a&gt; &lt;/noscript&gt; &lt;script&gt;document.write(\&#39;&lt;a href=&quot;http://www.baidu.com/bdorz/login.gif?login&amp;tpl=mn&amp;u=\&#39;+ encodeURIComponent(window.location.href+ (window.location.search === &quot;&quot; ? &quot;?&quot; : &quot;&amp;&quot;)+ &quot;bdorz_come=1&quot;)+ \&#39;&quot; name=&quot;tj_login&quot; class=&quot;lb&quot;&gt;ç\x99»å½\x95&lt;/a&gt;\&#39;);&lt;/script&gt; &lt;a href=//www.baidu.com/more/ name=tj_briicon class=bri style=&quot;display: block;&quot;&gt;æ\x9b´å¤\x9aäº§å\x93\x81&lt;/a&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div id=ftCon&gt; &lt;div id=ftConw&gt; &lt;p id=lh&gt; &lt;a href=http://home.baidu.com&gt;å\x85³äº\x8eç\x99¾åº¦&lt;/a&gt; &lt;a href=http://ir.baidu.com&gt;About Baidu&lt;/a&gt; &lt;/p&gt; &lt;p id=cp&gt;&amp;copy;2017&amp;nbsp;Baidu&amp;nbsp;&lt;a href=http://www.baidu.com/duty/&gt;ä½¿ç\x94¨ç\x99¾åº¦å\x89\x8då¿\x85è¯»&lt;/a&gt;&amp;nbsp; &lt;a href=http://jianyi.baidu.com/ class=cp-feedback&gt;æ\x84\x8fè§\x81å\x8f\x8dé¦\x88&lt;/a&gt;&amp;nbsp;äº¬ICPè¯\x81030173å\x8f·&amp;nbsp; &lt;img src=//www.baidu.com/img/gs.gif&gt; &lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/body&gt; &lt;/html&gt;\r\n&#39;
+&gt;&gt;&gt; response.cookies
+&lt;&lt;class &#39;requests.cookies.RequestsCookieJar&#39;&gt;[Cookie(version=0, name=&#39;BDORZ&#39;, value=&#39;27315&#39;, port=None, port_specified=False, domain=&#39;.baidu.com&#39;, domain_specified=True, domain_initial_dot=True, path=&#39;/&#39;, path_specified=True, secure=False, expires=1490789882, discard=False, comment=None, comment_url=None, rest={}, rfc2109=False)]&gt;
+&gt;&gt;&gt;
+</code></pre>
+<h2 id="-">各种请求方式</h2>
+<pre><code>import requests
+requests.post(&#39;http://httpbin.org/post&#39;)
+requests.put(&#39;http://httpbin.org/put&#39;)
+requests.delete(&#39;http://httpbin.org/delete&#39;)
+requests.head(&#39;http://httpbin.org/get&#39;)
+requests.options(&#39;http://httpbin.org/get&#39;)
+</code></pre><h1 id="-">请求</h1>
+<h2 id="-get-">基本GET请求</h2>
+<h3 id="-">基本写法</h3>
+<pre><code class="lang-python">&gt;&gt;&gt; response=requests.get(&#39;http://httpbin.org/get&#39;)
+&gt;&gt;&gt; print(response.text)
+{
+  &quot;args&quot;: {}, 
+  &quot;headers&quot;: {
+    &quot;Accept&quot;: &quot;*/*&quot;, 
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, 
+    &quot;Connection&quot;: &quot;close&quot;, 
+    &quot;Host&quot;: &quot;httpbin.org&quot;, 
+    &quot;User-Agent&quot;: &quot;python-requests/2.12.4&quot;
+  }, 
+  &quot;origin&quot;: &quot;223.95.78.229&quot;, 
+  &quot;url&quot;: &quot;http://httpbin.org/get&quot;
+}
+
+&gt;&gt;&gt;
+</code></pre>
+<h3 id="-get-">带参数GET请求</h3>
 <ul>
-<li>在python3中，默认的编码是UTF-8</li></ul>
-<pre><code>&gt;&gt;&gt; sys.getdefaultencoding()
-&#39;utf-8&#39;
-</code></pre><h3 id="-utf-8">编码utf-8</h3>
-<pre><code>&gt;&gt;&gt; a=&#39;编码&#39;
-&gt;&gt;&gt; a.encode(&#39;utf-8&#39;)
-b&#39;\xe7\xbc\x96\xe7\xa0\x81&#39;
-</code></pre><h3 id="-unicode">编码unicode</h3>
-<pre><code>&gt;&gt;&gt; a.encode(&#39;unicode-escape&#39;)
-b&#39;\\u7f16\\u7801&#39;
-</code></pre><h3 id="-gb2312">编码gb2312</h3>
-<pre><code>&gt;&gt;&gt; a.encode(&#39;gb2312&#39;)
-b&#39;\xb1\xe0\xc2\xeb&#39;
-</code></pre><h3 id="-utf-8-unicode">将utf-8转换为unicode</h3>
+<li>直接将参数放在URL中进行传递</li></ul>
+<pre><code>&gt;&gt;&gt; response=requests.get(&#39;http://httpbin.org/get?name=fighter&amp;age=18&#39;)
+&gt;&gt;&gt; print(response.text)
+{
+  &quot;args&quot;: {
+    &quot;age&quot;: &quot;18&quot;, 
+    &quot;name&quot;: &quot;fighter&quot;
+  }, 
+  &quot;headers&quot;: {
+    &quot;Accept&quot;: &quot;*/*&quot;, 
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, 
+    &quot;Connection&quot;: &quot;close&quot;, 
+    &quot;Host&quot;: &quot;httpbin.org&quot;, 
+    &quot;User-Agent&quot;: &quot;python-requests/2.12.4&quot;
+  }, 
+  &quot;origin&quot;: &quot;223.95.78.229&quot;, 
+  &quot;url&quot;: &quot;http://httpbin.org/get?name=fighter&amp;age=18&quot;
+}
+
+&gt;&gt;&gt;
+</code></pre><ul>
+<li>也可将数据放在字典中进行传递</li></ul>
+<pre><code>&gt;&gt;&gt; response=requests.get(&#39;http://httpbin.org/get&#39;,params=data)
+&gt;&gt;&gt; print(response)
+&lt;Response [200]&gt;
+&gt;&gt;&gt; print(response.text)
+{
+  &quot;args&quot;: {
+    &quot;age&quot;: &quot;18&quot;, 
+    &quot;name&quot;: &quot;fighteryu&quot;
+  }, 
+  &quot;headers&quot;: {
+    &quot;Accept&quot;: &quot;*/*&quot;, 
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, 
+    &quot;Connection&quot;: &quot;close&quot;, 
+    &quot;Host&quot;: &quot;httpbin.org&quot;, 
+    &quot;User-Agent&quot;: &quot;python-requests/2.12.4&quot;
+  }, 
+  &quot;origin&quot;: &quot;223.95.78.229&quot;, 
+  &quot;url&quot;: &quot;http://httpbin.org/get?age=18&amp;name=fighteryu&quot;
+}
+</code></pre><h3 id="-json">解析json</h3>
 <ul>
-<li>正常情况下是先将编码解码后再进行编码，但是由于python3默认的编码方式是utf-8，所以可以将字符串编码为unicode即可。</li></ul>
-<h3 id="-unicode-utf-8">将unicode转换为utf-8</h3>
+<li>response.text得到的是str类型的数据结构，用json解析之后得到的是dict类型</li></ul>
+<pre><code>&gt;&gt;&gt; import json
+&gt;&gt;&gt; a=response.text
+&gt;&gt;&gt; b=json.loads(a)
+&gt;&gt;&gt; print(b)
+{&#39;args&#39;: {&#39;age&#39;: &#39;18&#39;, &#39;name&#39;: &#39;fighteryu&#39;}, &#39;url&#39;: &#39;http://httpbin.org/get?age=18&amp;name=fighteryu&#39;, &#39;headers&#39;: {&#39;Accept-Encoding&#39;: &#39;gzip, deflate&#39;, &#39;Host&#39;: &#39;httpbin.org&#39;, &#39;User-Agent&#39;: &#39;python-requests/2.12.4&#39;, &#39;Connection&#39;: &#39;close&#39;, &#39;Accept&#39;: &#39;*/*&#39;}, &#39;origin&#39;: &#39;223.95.78.229&#39;}
+&gt;&gt;&gt; type(a)
+&lt;class &#39;str&#39;&gt;
+&gt;&gt;&gt; type(b)
+&lt;class &#39;dict&#39;&gt;
+&gt;&gt;&gt;
+</code></pre><h3 id="-">获取二进制数据</h3>
+<pre><code>&gt;&gt;&gt; response=requests.get(&#39;http://www.fighteryu.xyz/images/icon.ico&#39;)
+&gt;&gt;&gt; a=response.text
+&gt;&gt;&gt; b=response.content
+&gt;&gt;&gt; type(a)
+&lt;class &#39;str&#39;&gt;
+&gt;&gt;&gt; type(b)
+&lt;class &#39;bytes&#39;&gt;
+</code></pre><h3 id="-headers">添加headers</h3>
 <ul>
-<li>先解码后再编码即可，同理gb2312</li></ul>
-<pre><code>&gt;&gt;&gt; b&#39;\\u7f16\\u7801&#39;.decode(&#39;unicode-escape&#39;).encode(&#39;utf-8&#39;)
-b&#39;\xe7\xbc\x96\xe7\xa0\x81&#39;
-</code></pre><h3 id="-">查看当前编码情况</h3>
-<pre><code>&gt;&gt;&gt; chardet.detect(a1)
-{&#39;encoding&#39;: &#39;utf-8&#39;, &#39;confidence&#39;: 0.7525}
-</code></pre><h2 id="3-url-">3、URL编码</h2>
-<pre><code>&gt;&gt;&gt; import urllib.parse
-&gt;&gt;&gt; a=&#39;编码&#39;
-&gt;&gt;&gt; urllib.parse.quote(a)
-&#39;%E7%BC%96%E7%A0%81&#39;
+<li>在没有添加请求头的情况下，返回500</li></ul>
+<pre><code>&gt;&gt;&gt; response=requests.get(&#39;http://www.zhihu.com/explore&#39;)
+&gt;&gt;&gt; print(response.text)
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;500 Server Error&lt;/h1&gt;
+An internal server error occured.
+&lt;/body&gt;&lt;/html&gt;
+
+&gt;&gt;&gt;
+</code></pre><ul>
+<li>添加请求头headers后，返回200</li></ul>
+<pre><code>&gt;&gt;&gt; headers={&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36&quot;}
+&gt;&gt;&gt; response=requests.get(&#39;http://www.zhihu.com/explore&#39;,headers=headers)
+&gt;&gt;&gt; response.status_code
+200
+</code></pre><h2 id="-post-">基本POST请求</h2>
+<ul>
+<li>未添加请求头</li></ul>
+<pre><code>&gt;&gt;&gt; import requests
+&gt;&gt;&gt; data={&quot;name&quot;:&quot;fighteryu&quot;,&quot;age&quot;:&quot;18&quot;}
+&gt;&gt;&gt; url=&quot;http://httpbin.org/post&quot;
+&gt;&gt;&gt; response=requests.post(url,data=data)
+&gt;&gt;&gt; print(response.text)
+{
+  &quot;args&quot;: {}, 
+  &quot;data&quot;: &quot;&quot;, 
+  &quot;files&quot;: {}, 
+  &quot;form&quot;: {
+    &quot;age&quot;: &quot;18&quot;, 
+    &quot;name&quot;: &quot;fighteryu&quot;
+  }, 
+  &quot;headers&quot;: {
+    &quot;Accept&quot;: &quot;*/*&quot;, 
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, 
+    &quot;Connection&quot;: &quot;close&quot;, 
+    &quot;Content-Length&quot;: &quot;21&quot;, 
+    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;, 
+    &quot;Host&quot;: &quot;httpbin.org&quot;, 
+    &quot;User-Agent&quot;: &quot;python-requests/2.12.4&quot;
+  }, 
+  &quot;json&quot;: null, 
+  &quot;origin&quot;: &quot;223.95.78.229&quot;, 
+  &quot;url&quot;: &quot;http://httpbin.org/post&quot;
+}
+
+&gt;&gt;&gt;
+</code></pre><ul>
+<li>添加请求头</li></ul>
+<pre><code>&gt;&gt;&gt; headers={&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36&quot;}
+&gt;&gt;&gt; response=requests.post(url,data=data,headers=headers)
+</code></pre><h1 id="-">响应</h1>
+<h2 id="reponse-">reponse属性</h2>
+<pre><code>&gt;&gt;&gt; response=requests.get(&#39;http://www.baidu.com&#39;)
+&gt;&gt;&gt; response.status_code
+200
+&gt;&gt;&gt; response.headers
+{&#39;Content-Encoding&#39;: &#39;gzip&#39;, &#39;Content-Length&#39;: &#39;1284&#39;, &#39;Set-Cookie&#39;: &#39;andr=7;domain=.baidu.com;path=/;max-age=300&#39;, &#39;Content-Type&#39;: &#39;text/html;charset=UTF-8&#39;, &#39;Server&#39;: &#39;Apache-Coyote/1.1&#39;, &#39;Cache-Control&#39;: &#39;&#39;, &#39;Pragma&#39;: &#39;no-cache&#39;}
+&gt;&gt;&gt; response.cookies
+&lt;&lt;class &#39;requests.cookies.RequestsCookieJar&#39;&gt;[Cookie(version=0, name=&#39;andr&#39;, value=&#39;7&#39;, port=None, port_specified=False, domain=&#39;.baidu.com&#39;, domain_specified=True, domain_initial_dot=True, path=&#39;/&#39;, path_specified=True, secure=False, expires=1490714008, discard=False, comment=None, comment_url=None, rest={}, rfc2109=False)]&gt;
+&gt;&gt;&gt; response.url
+&#39;http://www.baidu.com/&#39;
+</code></pre><h2 id="-">状态码判断</h2>
+<pre><code>import requests
+
+response = requests.get(&#39;http://www.jianshu.com/hello.html&#39;)
+exit() if not response.status_code == requests.codes.not_found else print(&#39;404 Not Found&#39;)
+</code></pre><pre><code class="lang-python">import requests
+
+response = requests.get(&#39;http://www.jianshu.com&#39;)
+exit() if not response.status_code == 200 else print(&#39;Request Successfully&#39;)
+</code></pre>
+<ul>
+<li>状态码列表</li></ul>
+<pre><code>100: (&#39;continue&#39;,),
+101: (&#39;switching_protocols&#39;,),
+102: (&#39;processing&#39;,),
+103: (&#39;checkpoint&#39;,),
+122: (&#39;uri_too_long&#39;, &#39;request_uri_too_long&#39;),
+200: (&#39;ok&#39;, &#39;okay&#39;, &#39;all_ok&#39;, &#39;all_okay&#39;, &#39;all_good&#39;, &#39;\\o/&#39;, &#39;✓&#39;),
+201: (&#39;created&#39;,),
+202: (&#39;accepted&#39;,),
+203: (&#39;non_authoritative_info&#39;, &#39;non_authoritative_information&#39;),
+204: (&#39;no_content&#39;,),
+205: (&#39;reset_content&#39;, &#39;reset&#39;),
+206: (&#39;partial_content&#39;, &#39;partial&#39;),
+207: (&#39;multi_status&#39;, &#39;multiple_status&#39;, &#39;multi_stati&#39;, &#39;multiple_stati&#39;),
+208: (&#39;already_reported&#39;,),
+226: (&#39;im_used&#39;,),
+
+# Redirection.
+300: (&#39;multiple_choices&#39;,),
+301: (&#39;moved_permanently&#39;, &#39;moved&#39;, &#39;\\o-&#39;),
+302: (&#39;found&#39;,),
+303: (&#39;see_other&#39;, &#39;other&#39;),
+304: (&#39;not_modified&#39;,),
+305: (&#39;use_proxy&#39;,),
+306: (&#39;switch_proxy&#39;,),
+307: (&#39;temporary_redirect&#39;, &#39;temporary_moved&#39;, &#39;temporary&#39;),
+308: (&#39;permanent_redirect&#39;,
+      &#39;resume_incomplete&#39;, &#39;resume&#39;,), # These 2 to be removed in 3.0
+
+# Client Error.
+400: (&#39;bad_request&#39;, &#39;bad&#39;),
+401: (&#39;unauthorized&#39;,),
+402: (&#39;payment_required&#39;, &#39;payment&#39;),
+403: (&#39;forbidden&#39;,),
+404: (&#39;not_found&#39;, &#39;-o-&#39;),
+405: (&#39;method_not_allowed&#39;, &#39;not_allowed&#39;),
+406: (&#39;not_acceptable&#39;,),
+407: (&#39;proxy_authentication_required&#39;, &#39;proxy_auth&#39;, &#39;proxy_authentication&#39;),
+408: (&#39;request_timeout&#39;, &#39;timeout&#39;),
+409: (&#39;conflict&#39;,),
+410: (&#39;gone&#39;,),
+411: (&#39;length_required&#39;,),
+412: (&#39;precondition_failed&#39;, &#39;precondition&#39;),
+413: (&#39;request_entity_too_large&#39;,),
+414: (&#39;request_uri_too_large&#39;,),
+415: (&#39;unsupported_media_type&#39;, &#39;unsupported_media&#39;, &#39;media_type&#39;),
+416: (&#39;requested_range_not_satisfiable&#39;, &#39;requested_range&#39;, &#39;range_not_satisfiable&#39;),
+417: (&#39;expectation_failed&#39;,),
+418: (&#39;im_a_teapot&#39;, &#39;teapot&#39;, &#39;i_am_a_teapot&#39;),
+421: (&#39;misdirected_request&#39;,),
+422: (&#39;unprocessable_entity&#39;, &#39;unprocessable&#39;),
+423: (&#39;locked&#39;,),
+424: (&#39;failed_dependency&#39;, &#39;dependency&#39;),
+425: (&#39;unordered_collection&#39;, &#39;unordered&#39;),
+426: (&#39;upgrade_required&#39;, &#39;upgrade&#39;),
+428: (&#39;precondition_required&#39;, &#39;precondition&#39;),
+429: (&#39;too_many_requests&#39;, &#39;too_many&#39;),
+431: (&#39;header_fields_too_large&#39;, &#39;fields_too_large&#39;),
+444: (&#39;no_response&#39;, &#39;none&#39;),
+449: (&#39;retry_with&#39;, &#39;retry&#39;),
+450: (&#39;blocked_by_windows_parental_controls&#39;, &#39;parental_controls&#39;),
+451: (&#39;unavailable_for_legal_reasons&#39;, &#39;legal_reasons&#39;),
+499: (&#39;client_closed_request&#39;,),
+
+# Server Error.
+500: (&#39;internal_server_error&#39;, &#39;server_error&#39;, &#39;/o\\&#39;, &#39;✗&#39;),
+501: (&#39;not_implemented&#39;,),
+502: (&#39;bad_gateway&#39;,),
+503: (&#39;service_unavailable&#39;, &#39;unavailable&#39;),
+504: (&#39;gateway_timeout&#39;,),
+505: (&#39;http_version_not_supported&#39;, &#39;http_version&#39;),
+506: (&#39;variant_also_negotiates&#39;,),
+507: (&#39;insufficient_storage&#39;,),
+509: (&#39;bandwidth_limit_exceeded&#39;, &#39;bandwidth&#39;),
+510: (&#39;not_extended&#39;,),
+511: (&#39;network_authentication_required&#39;, &#39;network_auth&#39;, &#39;network_authentication&#39;),
+</code></pre><h1 id="-">高级操作</h1>
+<h2 id="-">文件上传</h2>
+<pre><code>import requests
+
+files = {&#39;file&#39;: open(&#39;favicon.ico&#39;, &#39;rb&#39;)}
+response = requests.post(&quot;http://httpbin.org/post&quot;, files=files)
+print(response.text)
+</code></pre><h2 id="-cookie">获取cookie</h2>
+<pre><code>&gt;&gt;&gt; response.cookies
+&lt;&lt;class &#39;requests.cookies.RequestsCookieJar&#39;&gt;[Cookie(version=0, name=&#39;andr&#39;, value=&#39;7&#39;, port=None, port_specified=False, domain=&#39;.baidu.com&#39;, domain_specified=True, domain_initial_dot=True, path=&#39;/&#39;, path_specified=True, secure=False, expires=1490714008, discard=False, comment=None, comment_url=None, rest={}, rfc2109=False)]&gt;
+&gt;&gt;&gt; for key,value in response.cookies.items():
+    print(key,value)
+
+
+andr 7
+</code></pre><h2 id="-">会话维持</h2>
+<ul>
+<li>模拟登录</li></ul>
+<pre><code>import requests
+
+requests.get(&#39;http://httpbin.org/cookies/set/number/123456789&#39;)
+response = requests.get(&#39;http://httpbin.org/cookies&#39;)
+print(response.text)
+</code></pre><pre><code>import requests
+
+s = requests.Session()
+s.get(&#39;http://httpbin.org/cookies/set/number/123456789&#39;)
+response = s.get(&#39;http://httpbin.org/cookies&#39;)
+print(response.text)
+</code></pre><h2 id="-">证书验证</h2>
+<pre><code>import requests
+
+response = requests.get(&#39;https://www.12306.cn&#39;)
+print(response.status_code)
+</code></pre><pre><code class="lang-python">import requests
+from requests.packages import urllib3
+urllib3.disable_warnings()
+response = requests.get(&#39;https://www.12306.cn&#39;, verify=False)
+print(response.status_code)
+</code></pre>
+<pre><code>import requests
+
+response = requests.get(&#39;https://www.12306.cn&#39;, cert=(&#39;/path/server.crt&#39;, &#39;/path/key&#39;))
+print(response.status_code)
+</code></pre><h2 id="-">代理设置</h2>
+<pre><code>import requests
+
+proxies = {
+  &quot;http&quot;: &quot;http://127.0.0.1:9743&quot;,
+  &quot;https&quot;: &quot;https://127.0.0.1:9743&quot;,
+}
+
+response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)
+print(response.status_code)
+</code></pre><pre><code>import requests
+
+proxies = {
+    &quot;http&quot;: &quot;http://user:password@127.0.0.1:9743/&quot;,
+}
+response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)
+print(response.status_code)
+</code></pre><pre><code>pip3 install &#39;requests[socks]&#39;
+</code></pre><pre><code>import requests
+
+proxies = {
+    &#39;http&#39;: &#39;socks5://127.0.0.1:9742&#39;,
+    &#39;https&#39;: &#39;socks5://127.0.0.1:9742&#39;
+}
+response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)
+print(response.status_code)
+</code></pre><h2 id="-">超时设置</h2>
+<pre><code>import requests
+from requests.exceptions import ReadTimeout
+try:
+    response = requests.get(&quot;http://httpbin.org/get&quot;, timeout = 0.5)
+    print(response.status_code)
+except ReadTimeout:
+    print(&#39;Timeout&#39;)
+</code></pre><h2 id="-">认证设置</h2>
+<pre><code>import requests
+from requests.auth import HTTPBasicAuth
+
+r = requests.get(&#39;http://120.27.34.24:9001&#39;, auth=HTTPBasicAuth(&#39;user&#39;, &#39;123&#39;))
+print(r.status_code)
+</code></pre><pre><code>import requests
+
+r = requests.get(&#39;http://120.27.34.24:9001&#39;, auth=(&#39;user&#39;, &#39;123&#39;))
+print(r.status_code)
+</code></pre><h2 id="-">异常处理</h2>
+<pre><code>import requests
+from requests.exceptions import ReadTimeout, ConnectionError, RequestException
+try:
+    response = requests.get(&quot;http://httpbin.org/get&quot;, timeout = 0.5)
+    print(response.status_code)
+except ReadTimeout:
+    print(&#39;Timeout&#39;)
+except ConnectionError:
+    print(&#39;Connection error&#39;)
+except RequestException:
+    print(&#39;Error&#39;)
+</code></pre><pre><code>Connection error
 </code></pre>
 </body>
 </html>

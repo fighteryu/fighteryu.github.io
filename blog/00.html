@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>code2code</title>
+<title>django</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
@@ -468,46 +468,97 @@ vertical-align:1px;
 </style>
 </head>
 <body>
-<h1 id="-center-python-center-"><center>Python字符编码问题简单描述</center></h1>
-<h2 id="1-ascii-">1.ASCII编码</h2>
-<blockquote>
-<p>　　在python中有chr()和ord()方法进行转换。</p>
-</blockquote>
-<pre><code>&gt;&gt;&gt; chr(88)
-&#39;X&#39;
-&gt;&gt;&gt; ord(&#39;X&#39;)
-88
-</code></pre><h2 id="2-python-">2、关于python中的编码</h2>
+<h1 id="django-">Django简单描述</h1>
+<h2 id="-">文件目录</h2>
 <ul>
-<li>在python3中，默认的编码是UTF-8</li></ul>
-<pre><code>&gt;&gt;&gt; sys.getdefaultencoding()
-&#39;utf-8&#39;
-</code></pre><h3 id="-utf-8">编码utf-8</h3>
-<pre><code>&gt;&gt;&gt; a=&#39;编码&#39;
-&gt;&gt;&gt; a.encode(&#39;utf-8&#39;)
-b&#39;\xe7\xbc\x96\xe7\xa0\x81&#39;
-</code></pre><h3 id="-unicode">编码unicode</h3>
-<pre><code>&gt;&gt;&gt; a.encode(&#39;unicode-escape&#39;)
-b&#39;\\u7f16\\u7801&#39;
-</code></pre><h3 id="-gb2312">编码gb2312</h3>
-<pre><code>&gt;&gt;&gt; a.encode(&#39;gb2312&#39;)
-b&#39;\xb1\xe0\xc2\xeb&#39;
-</code></pre><h3 id="-utf-8-unicode">将utf-8转换为unicode</h3>
+<li>first<ul>
+<li>admin.py</li><li>apps.py</li><li>models.py <strong>与数据库相关的内容</strong></li><li>views.py <strong>视图文件</strong></li></ul>
+</li><li>static <strong>js,CSS等静态文件</strong></li><li>templates <strong>HTML文件</strong></li><li>web<ul>
+<li>settings.py <strong>主配置文件</strong></li><li>urls.py  <strong>url路由文件</strong></li><li>wsgi.py <strong>网络通信接口文件</strong></li></ul>
+</li><li>manage.py <strong>django管理主程序</strong></li></ul>
+<h2 id="-urls-py-">编写urls.py文件</h2>
 <ul>
-<li>正常情况下是先将编码解码后再进行编码，但是由于python3默认的编码方式是utf-8，所以可以将字符串编码为unicode即可。</li></ul>
-<h3 id="-unicode-utf-8">将unicode转换为utf-8</h3>
+<li>首先导入对应app的views文件，将浏览器输入的url映射到相应的业务处理逻辑<pre><code>from django.conf.urls import url
+from django.contrib import admin
+from first import views
+urlpatterns = [
+  url(r&#39;^admin/&#39;, admin.site.urls),
+  url(r&#39;^index/&#39;,views.index),
+]
+</code></pre></li></ul>
+<h2 id="-views-py-">编写views.py文件</h2>
 <ul>
-<li>先解码后再编码即可，同理gb2312</li></ul>
-<pre><code>&gt;&gt;&gt; b&#39;\\u7f16\\u7801&#39;.decode(&#39;unicode-escape&#39;).encode(&#39;utf-8&#39;)
-b&#39;\xe7\xbc\x96\xe7\xa0\x81&#39;
-</code></pre><h3 id="-">查看当前编码情况</h3>
-<pre><code>&gt;&gt;&gt; chardet.detect(a1)
-{&#39;encoding&#39;: &#39;utf-8&#39;, &#39;confidence&#39;: 0.7525}
-</code></pre><h2 id="3-url-">3、URL编码</h2>
-<pre><code>&gt;&gt;&gt; import urllib.parse
-&gt;&gt;&gt; a=&#39;编码&#39;
-&gt;&gt;&gt; urllib.parse.quote(a)
-&#39;%E7%BC%96%E7%A0%81&#39;
+<li>将业务处理逻辑都写在该文件中，下列代码中不可直接返回字符串，必须用HttpResponse。<br>  以下代码实现了最简单的返回字符串/</li></ul>
+<pre><code>from django.shortcuts import render
+from django.shortcuts import HttpResponse
+
+def index(request):
+    return HttpResponse(&#39;hello,world!&#39;)
+</code></pre><h3 id="-index-helloworld-html-templates-index-html-views-py-">通过以上步骤我们就实现了访问index路径返回helloworld的功能，如果我们需要返回HTML文件，就需要将我们的文件放入templates中。现假定我们已经放入了需要的index.html文件，接下来需要重新编写我们的views.py文件。</h3>
+<pre><code>from django.shortcuts import render
+
+def index(request):
+    return render(request,&#39;index.html&#39;,)
+</code></pre><h3 id="-index-html-settings-py-">由于需要知道我们index.html的存放路径，所以可以在settings.py文件中进行添加</h3>
+<pre><code>TEMPLATES = [
+    {
+        &#39;BACKEND&#39;: &#39;django.template.backends.django.DjangoTemplates&#39;,
+        &#39;DIRS&#39;: [os.path.join(BASE_DIR,&#39;templates&#39;)],#设置html文件
+        &#39;APP_DIRS&#39;: True,
+        &#39;OPTIONS&#39;: {
+            &#39;context_processors&#39;: [
+                &#39;django.template.context_processors.debug&#39;,
+                &#39;django.template.context_processors.request&#39;,
+                &#39;django.contrib.auth.context_processors.auth&#39;,
+                &#39;django.contrib.messages.context_processors.messages&#39;,
+            ],
+        },
+    },
+]
+</code></pre><h3 id="-templates-static-js-css-static-settings-">说完templates就一定要讲一下static了，这是静态文件的保存路径，需要用到的js，css均可放在这里。static配置也在settings文件中。</h3>
+<pre><code>STATIC_URL = &#39;/static/&#39;#找到需要加载的各种css和js等插件
+
+STATICFILES_DIRS=(
+    os.path.join(BASE_DIR,&#39;static&#39;),
+    )
+</code></pre><h3 id="-app-app-">注册app,将app添加进列表即可</h3>
+<pre><code>INSTALLED_APPS = [
+    &#39;django.contrib.admin&#39;,
+    &#39;django.contrib.auth&#39;,
+    &#39;django.contrib.contenttypes&#39;,
+    &#39;django.contrib.sessions&#39;,
+    &#39;django.contrib.messages&#39;,
+    &#39;django.contrib.staticfiles&#39;,
+    &#39;first&#39;#注册APP
+]
+</code></pre><h3 id="-settings-sqllite-">连接数据库，同样也在settings中进行设置，默认使用的是sqllite，可以不用进行修改</h3>
+<pre><code>DATABASES = {
+    &#39;default&#39;: {
+        &#39;ENGINE&#39;: &#39;django.db.backends.sqlite3&#39;,
+        &#39;NAME&#39;: os.path.join(BASE_DIR, &#39;db.sqlite3&#39;),
+    }
+}
+</code></pre><h3 id="-mysql-">使用mysql数据库进行配置</h3>
+<pre><code>DATABASES = {
+    &#39;default&#39;: {
+     &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;, #数据库引擎
+     &#39;NAME&#39;: &#39;web&#39;,                        #数据库名
+     &#39;USER&#39;: &#39;root&#39;,                       #用户名
+     &#39;PASSWORD&#39;: &#39;root&#39;,                   #密码
+     &#39;HOST&#39;: &#39;127.0.0.1&#39;,                  #数据库主机，默认为localhost
+     &#39;PORT&#39;: &#39;3306&#39;,                       #数据库端口，MySQL默认为3306
+     &#39;OPTIONS&#39;: {
+           &#39;autocommit&#39;: True,
+         },
+    }
+}
+</code></pre><h2 id="-models-py-">编写models.py文件</h2>
+<h3 id="-">以下是一个简单的输入信息方法</h3>
+<pre><code>from django.db import models
+
+class UserInfo(models.Model):
+    user=models.CharField(max_length=32)
+    passwd=models.CharField(max_length=32)
 </code></pre>
 </body>
 </html>
