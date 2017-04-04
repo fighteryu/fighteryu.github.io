@@ -1,0 +1,671 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>data structure</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<style type="text/css">
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+.pl-c {
+    color: #969896;
+}
+
+.pl-c1,.pl-mdh,.pl-mm,.pl-mp,.pl-mr,.pl-s1 .pl-v,.pl-s3,.pl-sc,.pl-sv {
+    color: #0086b3;
+}
+
+.pl-e,.pl-en {
+    color: #795da3;
+}
+
+.pl-s1 .pl-s2,.pl-smi,.pl-smp,.pl-stj,.pl-vo,.pl-vpf {
+    color: #333;
+}
+
+.pl-ent {
+    color: #63a35c;
+}
+
+.pl-k,.pl-s,.pl-st {
+    color: #a71d5d;
+}
+
+.pl-pds,.pl-s1,.pl-s1 .pl-pse .pl-s2,.pl-sr,.pl-sr .pl-cce,.pl-sr .pl-sra,.pl-sr .pl-sre,.pl-src,.pl-v {
+    color: #df5000;
+}
+
+.pl-id {
+    color: #b52a1d;
+}
+
+.pl-ii {
+    background-color: #b52a1d;
+    color: #f8f8f8;
+}
+
+.pl-sr .pl-cce {
+    color: #63a35c;
+    font-weight: bold;
+}
+
+.pl-ml {
+    color: #693a17;
+}
+
+.pl-mh,.pl-mh .pl-en,.pl-ms {
+    color: #1d3e81;
+    font-weight: bold;
+}
+
+.pl-mq {
+    color: #008080;
+}
+
+.pl-mi {
+    color: #333;
+    font-style: italic;
+}
+
+.pl-mb {
+    color: #333;
+    font-weight: bold;
+}
+
+.pl-md,.pl-mdhf {
+    background-color: #ffecec;
+    color: #bd2c00;
+}
+
+.pl-mdht,.pl-mi1 {
+    background-color: #eaffea;
+    color: #55a532;
+}
+
+.pl-mdr {
+    color: #795da3;
+    font-weight: bold;
+}
+
+.pl-mo {
+    color: #1d3e81;
+}
+.task-list {
+padding-left:10px;
+margin-bottom:0;
+}
+
+.task-list li {
+    margin-left: 20px;
+}
+
+.task-list-item {
+list-style-type:none;
+padding-left:10px;
+}
+
+.task-list-item label {
+font-weight:400;
+}
+
+.task-list-item.enabled label {
+cursor:pointer;
+}
+
+.task-list-item+.task-list-item {
+margin-top:3px;
+}
+
+.task-list-item-checkbox {
+display:inline-block;
+margin-left:-20px;
+margin-right:3px;
+vertical-align:1px;
+}
+</style>
+</head>
+<body>
+<h1 id="-center-python-center-"><center>基本线性数据结构的Python实现</center></h1>
+<h2 id="-">数组</h2>
+<h4 id="-">数组设计之初是在形式上依赖内存分配而成的，所以必须在使用前预先请求空间。这使得数组有以下特性：</h4>
+<ul>
+<li>请求空间以后大小固定，不能再改变（数据溢出问题）；</li><li>在内存中有空间连续性的表现，中间不会存在其他程序需要调用的数据，为此数组的专用内存空间；</li><li>在旧式编程语言中（如有中阶语言之称的C），程序不会对数组的操作做下界判断，也就有潜在的越界操作的风险（比如会把数据写在运行中程序需要调用的核心部分的内存上）。</li></ul>
+<h4 id="-java-arraylist-vector-">因为简单数组强烈倚赖电脑硬件之内存，所以不适用于现代的程序设计。欲使用可变大小、硬件无关性的数据类型，Java等程序设计语言均提供了更高级的数据结构：ArrayList、Vector等动态数组。</h4>
+<h3 id="-">实现</h3>
+<pre><code>typedef struct {
+    PyObject_VAR_HEAD
+    /* Vector of pointers to list elements.  list[0] is ob_item[0], etc. */
+    PyObject **ob_item;
+
+    /* ob_item contains space for &#39;allocated&#39; elements.  The number
+     * currently in use is ob_size.
+     * Invariants:
+     *     0 &lt;= ob_size &lt;= allocated
+     *     len(list) == ob_size
+     *     ob_item == NULL implies ob_size == allocated == 0
+     * list.sort() temporarily sets allocated to -1 to detect mutations.
+     *
+     * Items must normally not be NULL, except during construction when
+     * the list is not yet visible outside the function that builds it.
+     */
+    Py_ssize_t allocated;
+} PyListObject;
+</code></pre><h2 id="-">堆栈</h2>
+<h4 id="-stack-top-push-pop-lifo-last-in-first-out-">堆栈（英语：stack），也可直接称栈，在计算机科学中，是一种特殊的串列形式的数据结构，它的特殊之处在于只能允许在链接串列或阵列的一端（称为堆叠顶端指标，英语：top）进行加入资料（英语：push）和输出资料（英语：pop）的运算。另外堆叠也可以用一维阵列或连结串列的形式来完成。堆叠的另外一个相对的操作方式称为伫列。由于堆叠数据结构只允许在一端进行操作，因而按照后进先出（LIFO, Last In First Out）的原理运作。</h4>
+<h3 id="-">特点</h3>
+<ul>
+<li>先入后出，后入先出。</li><li>除头尾节点之外，每个元素有一个前驱，一个后继。</li></ul>
+<h3 id="-">实现</h3>
+<pre><code>class my_stack(object):
+    def __init__(self, value):
+        self.value = value
+        # 前驱
+        self.before = None
+        # 后继
+        self.behind = None
+
+    def __str__(self):
+        return str(self.value)
+def top(stack):
+    if isinstance(stack, my_stack):
+        if stack.behind is not None:
+            return top(stack.behind)
+        else:
+            return stack
+def push(stack, ele):
+    push_ele = my_stack(ele)
+    if isinstance(stack, my_stack):
+      stack_top = top(stack)
+      push_ele.before = stack_top
+      push_ele.before.behind = push_ele
+    else:
+      raise Exception(&#39;不要乱扔东西进来好么&#39;)
+def pop(stack):
+    if isinstance(stack, my_stack):
+        stack_top = top(stack)
+        if stack_top.before is not None:
+            stack_top.before.behind = None
+            stack_top.behind = None
+            return stack_top
+        else:
+            print(&#39;已经是栈顶了&#39;)
+</code></pre><h2 id="-">队列</h2>
+<h4 id="-fifo-first-in-first-out-">和堆栈类似，唯一的区别是队列只能在队头进行出队操作，所以队列是是先进先出（FIFO, First-In-First-Out）的线性表</h4>
+<h3 id="-">特点</h3>
+<ul>
+<li>先入先出,后入后出</li><li>除尾节点外,每个节点有一个后继</li><li>（可选）除头节点外,每个节点有一个前驱</li></ul>
+<h3 id="-">实现</h3>
+<pre><code>class MyQueue():
+    def __init__(self, value=None):
+        self.value = value
+        # 前驱
+        # self.before = None
+        # 后继
+        self.behind = None
+
+    def __str__(self):
+        if self.value is not None:
+            return str(self.value)
+        else:
+            return &#39;None&#39;
+
+def create_queue():
+    &quot;&quot;&quot;仅有队头&quot;&quot;&quot;
+    return MyQueue()
+
+def last(queue):
+    if isinstance(queue, MyQueue):
+        if queue.behind is not None:
+            return last(queue.behind)
+        else:
+            return queue
+
+def push(queue, ele):
+    if isinstance(queue, MyQueue):
+        last_queue = last(queue)
+        new_queue = MyQueue(ele)
+        last_queue.behind = new_queue
+
+def pop(queue):
+    if queue.behind is not None:
+        get_queue = queue.behind
+        queue.behind = queue.behind.behind
+        return get_queue
+    else:
+        print(&#39;队列里已经没有元素了&#39;)
+
+def print_queue(queue):
+    print(queue)
+    if queue.behind is not None:
+        print_queue(queue.behind)
+</code></pre><h2 id="-">链表</h2>
+<h4 id="-linked-list-pointer-o-1-o-n-o-logn-o-1-">链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个节点里存到下一个节点的指针(Pointer)。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而顺序表相应的时间复杂度分别是O(logn)和O(1)。</h4>
+<h3 id="-">特点</h3>
+<h4 id="-">使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。但是链表失去了数组随机读取的优点，同时链表由于增加了结点的指针域，空间开销比较大。</h4>
+<h3 id="-">实现双向链表</h3>
+<pre><code>class LinkedList():
+    def __init__(self, value=None):
+        self.value = value
+        # 前驱
+        self.before = None
+        # 后继
+        self.behind = None
+
+    def __str__(self):
+        if self.value is not None:
+            return str(self.value)
+        else:
+            return &#39;None&#39;
+
+
+def init():
+    return LinkedList(&#39;HEAD&#39;)
+
+
+def delete(linked_list):
+    if isinstance(linked_list, LinkedList):
+        if linked_list.behind is not None:
+            delete(linked_list.behind)
+            linked_list.behind = None
+            linked_list.before = None
+        linked_list.value = None
+
+
+def insert(linked_list, index, node):
+    node = LinkedList(node)
+    if isinstance(linked_list, LinkedList):
+        i = 0
+        while linked_list.behind is not None:
+            if i == index:
+                break
+            i += 1
+            linked_list = linked_list.behind
+        if linked_list.behind is not None:
+            node.behind = linked_list.behind
+            linked_list.behind.before = node
+        node.before, linked_list.behind = linked_list, node
+
+
+def remove(linked_list, index):
+    if isinstance(linked_list, LinkedList):
+        i = 0
+        while linked_list.behind is not None:
+            if i == index:
+                break
+            i += 1
+            linked_list = linked_list.behind
+        if linked_list.behind is not None:
+            linked_list.behind.before = linked_list.before
+        if linked_list.before is not None:
+            linked_list.before.behind = linked_list.behind
+        linked_list.behind = None
+        linked_list.before = None
+        linked_list.value = None
+
+
+def trave(linked_list):
+    if isinstance(linked_list, LinkedList):
+        print(linked_list)
+        if linked_list.behind is not None:
+            trave(linked_list.behind)
+
+
+def find(linked_list, index):
+    if isinstance(linked_list, LinkedList):
+        i = 0
+        while linked_list.behind is not None:
+            if i == index:
+                return linked_list
+            i += 1
+            linked_list = linked_list.behind
+        else:
+            if i &lt; index:
+                raise Exception(404)
+            return linked_list
+</code></pre>
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
